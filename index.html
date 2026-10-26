@@ -33,8 +33,10 @@ h2 .ico{display:inline-flex; width:36px; height:36px; border-radius:10px; backgr
 h2.green-sec .ico{background:var(--green)}
 .lead{color:var(--muted); margin-bottom:18px; font-size:.92rem; max-width:760px}
 h3{font-size:1.02rem; font-weight:700; margin:24px 0 10px; letter-spacing:-.01em}
-.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(16,24,40,.04); min-width:0}
 .grid{display:grid; gap:14px}
+.grid > *{min-width:0}
+.two-col > *{min-width:0}
 @media(min-width:760px){.grid.c2{grid-template-columns:1fr 1fr} .grid.c3{grid-template-columns:1fr 1fr 1fr}}
 
 .tariff-name{font-weight:800; font-size:1.08rem; color:var(--mts); margin-bottom:2px}
@@ -47,7 +49,7 @@ ul.feat{list-style:none; margin:8px 0}
 ul.feat li{padding-left:20px; position:relative; font-size:.85rem; margin-bottom:5px; line-height:1.45}
 ul.feat li::before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:700}
 
-.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:10px 0 4px}
+.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:10px 0 4px; max-width:100%}
 table{border-collapse:collapse; width:100%; font-size:.82rem; background:#fff}
 th,td{border:1px solid var(--border); padding:7px 8px; text-align:center; vertical-align:middle}
 th{background:#fafafa; font-weight:700; font-size:.78rem}
@@ -106,6 +108,31 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
 .link-more:hover{text-decoration:underline}
 
 @media print{nav{display:none} .card,.mt-card{break-inside:avoid} body{background:#fff}}
+
+@media(max-width:600px){
+  .wrap{padding:0 12px}
+  header{padding:22px 0 18px}
+  header h1{font-size:1.3rem}
+  header p{font-size:.85rem}
+  main.wrap section{padding:28px 0 4px}
+  h2{font-size:1.15rem; flex-wrap:wrap}
+  h2 .ico{width:32px; height:32px; font-size:.95rem}
+  .lead{font-size:.87rem; margin-bottom:14px}
+  .card{padding:14px 12px; border-radius:12px; margin-bottom:12px}
+  .grid,.two-col,.grid.c4{gap:10px}
+  table{font-size:.78rem}
+  th,td{padding:6px 5px}
+  th{font-size:.72rem}
+  .price{font-size:1.25rem}
+  .q-price{font-size:1.3rem}
+  .quick-card{padding:11px 10px; border-radius:12px}
+  .tariff-name{font-size:1rem}
+  .mt-card{padding:12px}
+  .count-step{min-width:70px; padding:8px 5px}
+  .step{font-size:.82rem}
+  .alert,.note,.svc-note{font-size:.78rem}
+  footer{padding:20px 0 36px}
+}
 </style>
 </head>
 <body>
@@ -483,22 +510,62 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
       <a class="link-more" href="#vt">Подробнее о Защитник+ и ценах →</a>
     </div>
   </div>
+</section>
+
+<!-- ============ VOICETECH ============ -->
+<section id="vt">
+  <h2><span class="ico">🎙</span>VoiceTech</h2>
+  <p class="lead">Продукты безопасности и технологии МТС: блокировка спама, проверка утечки данных, защита от мошенников, страховка от обмана и удобство звонков.</p>
+
+  <div class="grid c2">
+    <div class="card" style="border:2px solid var(--mts)">
+      <div class="tariff-name">Защитник+</div>
+      <div class="svc-price">
+        <span class="price">249 ₽/мес</span>
+        <span class="note" style="margin:0">актуальные тарифы · 299 ₽/мес архивные</span>
+      </div>
+      <div class="tariff-desc">Подписка на все сервисы безопасности МТС. В одну услугу можно добавить <b>до 3 взрослых и до 3 детей</b> через семейную группу — платит один человек.</div>
+      <ul class="feat">
+        <li><b>Блокировка спама</b> — «Защитник» заблокирует спам и сохранит информацию о звонке в «Мой МТС»</li>
+        <li><b>Безопасный звонок</b> — распознаёт, что дозвонился мошенник, во время разговора. Предупредит о рисках и не даст обмануть</li>
+        <li><b>Уведомления о мошенниках</b> — моментально пришлёт уведомление, если близкий говорит с мошенником</li>
+        <li><b>Проверка утечки данных</b> — найдёт данные клиента, если они утекли в сеть, и даст рекомендации, что делать</li>
+        <li><b>Страховка от обмана</b> — вернёт деньги, если клиента обманули и он перевёл средства мошенникам. Компенсация ущерба <b>до 1,5 млн ₽</b></li>
+        <li><b>Безопасный интернет</b> — заблокирует взрослый и нежелательный контент у детей</li>
+      </ul>
+      <div class="svc-note">Продаём как основной сервис безопасности для всей семьи. Особенно хорошо заходит родителям и владельцам «Мудрого».</div>
+    </div>
+
+    <div class="card" style="border:2px solid var(--mts)">
+      <div class="tariff-name">AI Помощник МТС</div>
+      <div class="svc-price">
+        <span class="price">249 ₽/мес</span>
+        <span class="svc-old">347 ₽ по отдельности</span>
+      </div>
+      <div class="tariff-desc">Подписка на все сервисы для тех, кто много звонит: убирает шумы, автоматически сохраняет и обрабатывает важную информацию.</div>
+      <ul class="feat">
+        <li><b>Шумоподавление</b> (отдельно 99 ₽/мес) — убирает фоновые шумы, слышен только голос собеседника, даже шёпот в шумном автобусе</li>
+        <li><b>Интеллектуальная запись</b> (отдельно 99 ₽/мес) — звонки записываются автоматически без оповещений, расшифровки и краткое содержание в «Мой МТС»</li>
+        <li><b>Секретарь</b> (отдельно 149 ₽/мес) — отвечает, когда нет сети или телефон выключен, присылает расшифровки. «Звонок в чат»: слова звонящего превращаются в текст, ваши сообщения озвучиваются голосом</li>
+        <li><b>Ассистент в звонке</b> — позвоните на 0355 и дайте голосовое задание: «Марвин, до скольких работает поликлиника №1?»</li>
+      </ul>
+      <div class="svc-note">Выгода клиента: 99 + 99 + 149 = 347 ₽, а с подпиской — 249 ₽. Продаём как «всё в одном для активных звонков».</div>
+    </div>
+  </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Семейные группы у разных операторов</h3>
+    <h3 style="margin-top:0">Сервисы по отдельности — для сравнения при продаже</h3>
     <div class="table-scroll">
-      <table class="wide">
-        <tr><th></th><th>МТС</th><th>МегаФон</th><th>билайн</th><th>T2</th></tr>
-        <tr><td>Основа продукта</td><td class="hi">Свои тарифы + роли, скидки и сервисы</td><td>Ресурсы организатора + безопасность</td><td>Один основной тариф + доп. номера</td><td>Свои тарифы + скидка</td></tr>
-        <tr><td>Скидка на тарифы</td><td class="hi">До 20%, отдельные скидки для ребёнка и старшего</td><td>Основная выгода через общий пакет</td><td>Экономия за счёт одного тарифа</td><td>До 25%</td></tr>
-        <tr><td>Ребёнок</td><td class="hi">Геолокация, заряд, Junior, защита, SOS</td><td>Геолокация, фильтрация, защита от списаний</td><td>Отдельный детский сценарий не ядро</td><td>Роль ребёнка и ограничения</td></tr>
-        <tr><td>Старшие близкие</td><td class="hi">Отдельная роль и защита от мошенников</td><td>Не главный сценарий</td><td>Не главный сценарий</td><td>Роль «Старшее поколение»</td></tr>
-        <tr><td>Другой оператор</td><td class="hi">Можно добавить в группу</td><td>Основная механика для номеров МегаФона</td><td>Нужен номер билайна</td><td>Можно добавить как Гостя</td></tr>
-        <tr><td>Размер группы</td><td class="hi">До 10 человек с организатором</td><td>Зависит от тарифа</td><td>До 10 доп. номеров</td><td>От 3 до 5 участников</td></tr>
-        <tr><td>Ключевая сила</td><td class="hi">Забота о ребёнке и старших + скидка</td><td>Ресурс и безопасность</td><td>Масштабный общий тариф</td><td>Простая скидочная модель</td></tr>
-        <tr><td>Ограничение</td><td>Нет общего пакета</td><td>Зависимость от тарифа организатора</td><td>Зависимость от основного номера</td><td>Мин. 3 участника + своевременный платёж</td></tr>
+      <table>
+        <tr><th>Сервис</th><th>Цена</th><th>Бесплатно в тарифах</th><th>Что делает</th></tr>
+        <tr><td>Шумоподавление</td><td>99 ₽/мес</td><td>Супер (нужно подключить для активации)</td><td>Чистый звук без фоновых шумов</td></tr>
+        <tr><td>Интеллектуальная запись</td><td>99 ₽/мес</td><td>—</td><td>Авто-запись всех звонков с расшифровками</td></tr>
+        <tr><td>Секретарь</td><td>149 ₽/мес</td><td>Супер, РИИЛ, RED</td><td>Ответ на звонок без сети, расшифровка, звонок в чат</td></tr>
+        <tr><td class="hi">AI Помощник МТС (подписка)</td><td class="hi">249 ₽/мес</td><td class="hi">—</td><td class="hi">Все три сервиса + Ассистент в звонке (0355)</td></tr>
+        <tr><td class="hi">Защитник+ (подписка)</td><td class="hi">249 ₽/мес*</td><td class="hi">Базовый «Защитник» в RED/РИИЛ/Супер/Junior</td><td class="hi">6 сервисов безопасности для семьи, страховка до 1,5 млн ₽</td></tr>
       </table>
     </div>
+    <div class="note">*249 ₽/мес для актуальных тарифов, 299 ₽/мес для архивных.</div>
   </div>
 </section>
 
@@ -600,63 +667,6 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
       </table>
     </div>
     <div class="note">Условия конкурентов приведены по презентации «Челябинск_Сравнение с конкурентами_ОКТЯБРЬ». Уточняйте актуальные цены на официальных сайтах операторов.</div>
-  </div>
-</section>
-
-<!-- ============ VOICETECH ============ -->
-<section id="vt">
-  <h2><span class="ico">🎙</span>VoiceTech</h2>
-  <p class="lead">Продукты безопасности и технологии МТС: блокировка спама, проверка утечки данных, защита от мошенников, страховка от обмана и удобство звонков.</p>
-
-  <div class="grid c2">
-    <div class="card" style="border:2px solid var(--mts)">
-      <div class="tariff-name">Защитник+</div>
-      <div class="svc-price">
-        <span class="price">249 ₽/мес</span>
-        <span class="note" style="margin:0">актуальные тарифы · 299 ₽/мес архивные</span>
-      </div>
-      <div class="tariff-desc">Подписка на все сервисы безопасности МТС. В одну услугу можно добавить <b>до 3 взрослых и до 3 детей</b> через семейную группу — платит один человек.</div>
-      <ul class="feat">
-        <li><b>Блокировка спама</b> — «Защитник» заблокирует спам и сохранит информацию о звонке в «Мой МТС»</li>
-        <li><b>Безопасный звонок</b> — распознаёт, что дозвонился мошенник, во время разговора. Предупредит о рисках и не даст обмануть</li>
-        <li><b>Уведомления о мошенниках</b> — моментально пришлёт уведомление, если близкий говорит с мошенником</li>
-        <li><b>Проверка утечки данных</b> — найдёт данные клиента, если они утекли в сеть, и даст рекомендации, что делать</li>
-        <li><b>Страховка от обмана</b> — вернёт деньги, если клиента обманули и он перевёл средства мошенникам. Компенсация ущерба <b>до 1,5 млн ₽</b></li>
-        <li><b>Безопасный интернет</b> — заблокирует взрослый и нежелательный контент у детей</li>
-      </ul>
-      <div class="svc-note">Продаём как основной сервис безопасности для всей семьи. Особенно хорошо заходит родителям и владельцам «Мудрого».</div>
-    </div>
-
-    <div class="card" style="border:2px solid var(--mts)">
-      <div class="tariff-name">AI Помощник МТС</div>
-      <div class="svc-price">
-        <span class="price">249 ₽/мес</span>
-        <span class="svc-old">347 ₽ по отдельности</span>
-      </div>
-      <div class="tariff-desc">Подписка на все сервисы для тех, кто много звонит: убирает шумы, автоматически сохраняет и обрабатывает важную информацию.</div>
-      <ul class="feat">
-        <li><b>Шумоподавление</b> (отдельно 99 ₽/мес) — убирает фоновые шумы, слышен только голос собеседника, даже шёпот в шумном автобусе</li>
-        <li><b>Интеллектуальная запись</b> (отдельно 99 ₽/мес) — звонки записываются автоматически без оповещений, расшифровки и краткое содержание в «Мой МТС»</li>
-        <li><b>Секретарь</b> (отдельно 149 ₽/мес) — отвечает, когда нет сети или телефон выключен, присылает расшифровки. «Звонок в чат»: слова звонящего превращаются в текст, ваши сообщения озвучиваются голосом</li>
-        <li><b>Ассистент в звонке</b> — позвоните на 0355 и дайте голосовое задание: «Марвин, до скольких работает поликлиника №1?»</li>
-      </ul>
-      <div class="svc-note">Выгода клиента: 99 + 99 + 149 = 347 ₽, а с подпиской — 249 ₽. Продаём как «всё в одном для активных звонков».</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0">Сервисы по отдельности — для сравнения при продаже</h3>
-    <div class="table-scroll">
-      <table>
-        <tr><th>Сервис</th><th>Цена</th><th>Бесплатно в тарифах</th><th>Что делает</th></tr>
-        <tr><td>Шумоподавление</td><td>99 ₽/мес</td><td>Супер (нужно подключить для активации)</td><td>Чистый звук без фоновых шумов</td></tr>
-        <tr><td>Интеллектуальная запись</td><td>99 ₽/мес</td><td>—</td><td>Авто-запись всех звонков с расшифровками</td></tr>
-        <tr><td>Секретарь</td><td>149 ₽/мес</td><td>Супер, РИИЛ, RED</td><td>Ответ на звонок без сети, расшифровка, звонок в чат</td></tr>
-        <tr><td class="hi">AI Помощник МТС (подписка)</td><td class="hi">249 ₽/мес</td><td class="hi">—</td><td class="hi">Все три сервиса + Ассистент в звонке (0355)</td></tr>
-        <tr><td class="hi">Защитник+ (подписка)</td><td class="hi">249 ₽/мес*</td><td class="hi">Базовый «Защитник» в RED/РИИЛ/Супер/Junior</td><td class="hi">6 сервисов безопасности для семьи, страховка до 1,5 млн ₽</td></tr>
-      </table>
-    </div>
-    <div class="note">*249 ₽/мес для актуальных тарифов, 299 ₽/мес для архивных.</div>
   </div>
 </section>
 
