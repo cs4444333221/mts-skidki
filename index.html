@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МТС — Скидки и продукты</title>
+<style>
+:root{
+  --mts:#e30611; --mts-dark:#b8050e; --green:#00a94f; --bg:#f4f5f7; --card:#ffffff;
+  --text:#17181c; --muted:#6b7280; --border:#e5e7eb; --radius:16px;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; font-size:16px}
+.wrap{max-width:1080px; margin:0 auto; padding:0 16px}
+
+header{background:linear-gradient(135deg,var(--mts) 0%,var(--mts-dark) 100%); color:#fff; padding:30px 0 26px}
+header h1{font-size:clamp(1.4rem,4vw,1.75rem); font-weight:800; letter-spacing:-.02em}
+header p{opacity:.92; margin-top:6px; font-size:.95rem}
+.badge-date{display:inline-block; margin-top:12px; background:rgba(255,255,255,.16); padding:5px 14px; border-radius:99px; font-size:.78rem}
+
+nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid var(--border)}
+nav .wrap{display:flex; gap:2px; overflow-x:auto; padding:6px 16px; scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{white-space:nowrap; text-decoration:none; color:var(--muted); font-size:.85rem; font-weight:600; padding:9px 13px; border-radius:99px; transition:.15s}
+nav a:hover{background:#fee2e2; color:var(--mts)}
+
+main.wrap section{padding:36px 0 4px}
+main.wrap section + section{border-top:1px solid var(--border); margin-top:14px}
+h2{font-size:clamp(1.2rem,3.5vw,1.4rem); font-weight:800; letter-spacing:-.01em; margin-bottom:10px; display:flex; align-items:center; gap:10px}
+h2 .ico{display:inline-flex; width:36px; height:36px; border-radius:10px; background:var(--mts); color:#fff; align-items:center; justify-content:center; font-size:1.05rem; flex:none}
+h2.green-sec .ico{background:var(--green)}
+.lead{color:var(--muted); margin-bottom:18px; font-size:.92rem; max-width:760px}
+h3{font-size:1.02rem; font-weight:700; margin:24px 0 10px; letter-spacing:-.01em}
+.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.grid{display:grid; gap:14px}
+@media(min-width:760px){.grid.c2{grid-template-columns:1fr 1fr} .grid.c3{grid-template-columns:1fr 1fr 1fr}}
+
+.tariff-name{font-weight:800; font-size:1.08rem; color:var(--mts); margin-bottom:2px}
+.tariff-desc{font-size:.82rem; color:var(--muted); margin-bottom:10px; line-height:1.45}
+.price-row{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:10px}
+.price{font-size:1.4rem; font-weight:800; letter-spacing:-.01em}
+.tag-green{display:inline-block; background:#dcfce7; color:#15803d; font-weight:700; font-size:.78rem; padding:3px 9px; border-radius:8px}
+
+ul.feat{list-style:none; margin:8px 0}
+ul.feat li{padding-left:20px; position:relative; font-size:.85rem; margin-bottom:5px; line-height:1.45}
+ul.feat li::before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:700}
+
+.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:10px 0 4px}
+table{border-collapse:collapse; width:100%; font-size:.82rem; background:#fff}
+th,td{border:1px solid var(--border); padding:7px 8px; text-align:center; vertical-align:middle}
+th{background:#fafafa; font-weight:700; font-size:.78rem}
+td:first-child,th:first-child{text-align:left}
+tr:nth-child(even) td{background:#fcfcfd}
+.hi{background:#fef9c3 !important; font-weight:700}
+.mts-row td{background:#fff5f5 !important; font-weight:600}
+table.wide{min-width:680px}
+
+.note{font-size:.78rem; color:var(--muted); margin-top:10px; line-height:1.45}
+.pill{display:inline-block; background:#fee2e2; color:var(--mts); font-weight:700; font-size:.72rem; padding:2px 7px; border-radius:6px; white-space:nowrap}
+.pill.g{background:#dcfce7; color:#15803d}
+.two-col{display:grid; gap:14px}
+@media(min-width:760px){.two-col{grid-template-columns:1fr 1fr}}
+.frud-box{border-left:4px solid var(--mts)}
+.code-list{list-style:none}
+.code-list li{display:flex; gap:10px; padding:7px 0; border-bottom:1px dashed var(--border); font-size:.85rem}
+.code-list li:last-child{border-bottom:none}
+.code{font-weight:800; color:var(--mts); flex:none; min-width:44px}
+
+footer{margin-top:48px; padding:26px 0 44px; background:#17181c; color:#9ca3af; font-size:.78rem; line-height:1.6}
+footer .wrap{display:flex; flex-direction:column; gap:8px}
+
+.mt-card{border:1px solid var(--border); border-radius:14px; padding:16px; background:#fff}
+.mt-card h4{font-size:.98rem; margin-bottom:2px}
+.mt-card .p{font-size:1.2rem; font-weight:800; color:var(--mts); margin-bottom:6px}
+.kicker{font-size:.72rem; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); font-weight:700; margin-bottom:4px}
+.step{display:flex; gap:10px; margin-bottom:12px; font-size:.87rem; line-height:1.45}
+.step .n{flex:none; width:24px; height:24px; border-radius:50%; background:var(--green); color:#fff; font-weight:700; font-size:.78rem; display:flex; align-items:center; justify-content:center; margin-top:1px}
+.alert{background:#fffbeb; border:1px solid #fde047; border-radius:12px; padding:12px 14px; font-size:.84rem; margin-top:14px; line-height:1.5}
+
+.section-quick{padding:24px 0 4px !important}
+.grid.c4{grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.grid.c4{grid-template-columns:repeat(4,1fr)}}
+.quick-card{display:block; background:#fff; border:1px solid var(--border); border-radius:14px; padding:13px 14px; text-decoration:none; color:var(--text); transition:.15s; box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.quick-card:hover{border-color:var(--mts); transform:translateY(-2px); box-shadow:0 6px 16px rgba(227,6,17,.10)}
+.q-label{font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em}
+.q-price{font-size:1.45rem; font-weight:800; color:var(--mts); margin:2px 0 0; letter-spacing:-.02em}
+.q-sub{font-size:.74rem; color:var(--muted); line-height:1.35; margin-top:2px}
+.q-tag{display:inline-block; margin-top:8px; font-size:.7rem; font-weight:700; padding:2px 8px; border-radius:6px}
+.green-tag{background:#dcfce7; color:#15803d}
+
+.svc-price{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:4px 0 10px}
+.svc-price .price{color:var(--mts)}
+.svc-old{font-size:.85rem; color:var(--muted); text-decoration:line-through; font-weight:600}
+.svc-note{font-size:.78rem; background:#f0fdf4; border:1px solid #bbf7d0; color:#166534; border-radius:10px; padding:8px 12px; display:block; margin-top:10px; line-height:1.45}
+
+.count-steps{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0}
+.count-step{flex:1; min-width:80px; background:#fff7ed; border:1px solid #fed7aa; border-radius:12px; padding:10px 8px; text-align:center}
+.count-step .n{font-size:1.25rem; font-weight:800; color:#c2410c}
+.count-step .t{font-size:.7rem; color:var(--muted); line-height:1.3; margin-top:2px}
+.count-step.best{background:#dcfce7; border-color:#86efac}
+.count-step.best .n{color:#15803d}
+.link-more{display:inline-block; font-size:.82rem; font-weight:600; color:var(--mts); text-decoration:none; margin-top:8px}
+.link-more:hover{text-decoration:underline}
+
+@media print{nav{display:none} .card,.mt-card{break-inside:avoid} body{background:#fff}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>МТС — скидки и продукты</h1>
+    <p>Шпаргалка продавца: цены, скидки и продукты в одном месте</p>
+    <span class="badge-date">Данные собраны: 23.10.2026 · источник: презентации из папки «Преза»</span>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#quick">⚡ Цены</a>
+    <a href="#abon">🎫 Абонементы</a>
+    <a href="#green">💸 Зелёные ценники</a>
+    <a href="#family">👨‍👩‍👧 Семейная группа</a>
+    <a href="#vt">🎙 Сервисы 249 ₽</a>
+    <a href="#mnp">🔀 МНП и фрод</a>
+    <a href="#comp">📊 Конкуренты</a>
+    <a href="#kubarik">🏠 Кубарик</a>
+  </div>
+</nav>
+
+<!-- ============ БЫСТРАЯ ШПАРГАЛКА ЦЕН ============ -->
+<section id="quick" class="section-quick">
+ <div class="wrap">
+  <h2><span class="ico">⚡</span>Шпаргалка: главные цены и скидки</h2>
+  <p class="lead">Всё самое важное на одном экране. Кликните на карточку, чтобы перейти к подробностям.</p>
+  <div class="grid c4 quick-grid">
+    <a class="quick-card" href="#abon">
+      <div class="q-label">Тариф RED</div>
+      <div class="q-price">750 ₽</div>
+      <div class="q-sub">600 ₽ с картой МТС Деньги</div>
+      <div class="q-tag green-tag">−20% зелёный ценник</div>
+    </a>
+    <a class="quick-card" href="#abon">
+      <div class="q-label">Тариф РИИЛ</div>
+      <div class="q-price">650 ₽</div>
+      <div class="q-sub">520 ₽ с картой МТС Деньги</div>
+      <div class="q-tag green-tag">−20% зелёный ценник</div>
+    </a>
+    <a class="quick-card" href="#abon">
+      <div class="q-label">Тариф СУПЕР</div>
+      <div class="q-price">900 ₽</div>
+      <div class="q-sub">720 ₽ с картой МТС Деньги</div>
+      <div class="q-tag green-tag">−20% зелёный ценник</div>
+    </a>
+    <a class="quick-card" href="#abon">
+      <div class="q-label">Абонемент 24 мес.</div>
+      <div class="q-price">−30%</div>
+      <div class="q-sub">RED 525 ₽/мес · РИИЛ 455 ₽/мес · Супер 630 ₽/мес</div>
+    </a>
+    <a class="quick-card" href="#family">
+      <div class="q-label">Семейная группа</div>
+      <div class="q-price">до −20%</div>
+      <div class="q-sub">скидка на тариф каждого участника, до 10 человек</div>
+    </a>
+    <a class="quick-card" href="#vt">
+      <div class="q-label">Защитник+</div>
+      <div class="q-price">249 ₽/мес</div>
+      <div class="q-sub">вся семья: 3 взрослых + 3 ребёнка</div>
+    </a>
+    <a class="quick-card" href="#vt">
+      <div class="q-label">AI Помощник МТС</div>
+      <div class="q-price">249 ₽/мес</div>
+      <div class="q-sub">3 сервиса по отдельности на 347 ₽</div>
+    </a>
+    <a class="quick-card" href="#green">
+      <div class="q-label">Зелёные ценники</div>
+      <div class="q-price">20% / 10%</div>
+      <div class="q-sub">новым клиентам / при переходе на тариф</div>
+    </a>
+    <a class="quick-card" href="#abon">
+      <div class="q-label">Junior</div>
+      <div class="q-price">207 ₽/мес</div>
+      <div class="q-sub">абонемент 12 мес. (−67%)</div>
+    </a>
+    <a class="quick-card" href="#abon">
+      <div class="q-label">Junior+</div>
+      <div class="q-price">248 ₽/мес</div>
+      <div class="q-sub">абонемент 12 мес. (−67%)</div>
+    </a>
+  </div>
+ </div>
+</section>
+
+<main class="wrap">
+
+<!-- ============ АБОНЕМЕНТЫ ============ -->
+<section id="abon">
+  <h2><span class="ico">🎫</span>Абонементы</h2>
+  <p class="lead">Абонемент — предоплата абонентской платы на срок. Клиент фиксирует цену на весь срок и получает скидку до 30% (до 67% на детских тарифах). Пока действует абонемент — не нужно помнить про пополнение баланса, стоимость АП не меняется. При покупке абонемента списывается его стоимость + плата за подключение 150 ₽. Актуально на 20.10.2026.</p>
+
+  <div class="grid c3">
+    <div class="card">
+      <div class="tariff-name">RED</div>
+      <div class="tariff-desc">50 ГБ · 800 минут · 800 SMS. Защитник, МТС Секретарь, KION и KION Музыка</div>
+      <div class="price-row"><span class="price">750 ₽/мес</span><span class="tag-green">600 ₽ с картой МТС Деньги</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−10%</span></td><td>2 175 ₽</td><td>675 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−15%</span></td><td>3 975 ₽</td><td>637 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−20%</span></td><td>7 350 ₽</td><td>600 ₽</td></tr>
+          <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi">12 750 ₽</td><td class="hi">525 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tariff-name">РИИЛ</div>
+      <div class="tariff-desc">Собери свой тариф: 200–2000 мин., 5 ГБ — безлимит. Цена для 50 ГБ / 300 мин / 100 SMS</div>
+      <div class="price-row"><span class="price">650 ₽/мес</span><span class="tag-green">520 ₽ с картой МТС Деньги</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−10%</span></td><td>1 905 ₽</td><td>585 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−15%</span></td><td>3 465 ₽</td><td>552 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−20%</span></td><td>6 390 ₽</td><td>520 ₽</td></tr>
+          <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi">11 070 ₽</td><td class="hi">455 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tariff-name">МТС СУПЕР</div>
+      <div class="tariff-desc">Безлимитный интернет · 1500 минут · 1000 SMS. Шумоподавление, Секретарь, запись</div>
+      <div class="price-row"><span class="price">900 ₽/мес</span><span class="tag-green">720 ₽ с картой МТС Деньги</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−10%</span></td><td>2 580 ₽</td><td>810 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−15%</span></td><td>4 740 ₽</td><td>765 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−20%</span></td><td>8 790 ₽</td><td>720 ₽</td></tr>
+          <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi">15 270 ₽</td><td class="hi">630 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid c2">
+    <div class="card">
+      <div class="tariff-name">Junior</div>
+      <div class="tariff-desc">20 ГБ · 300 минут · 1000 SMS · Геолокация · Безлимитные мессенджеры · Защитник · Безопасный интернет</div>
+      <div class="price-row"><span class="price">625 ₽/мес</span><span class="tag-green">500 ₽ в Семейной группе с ролью «ребёнок»</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−25%</span></td><td>1 557 ₽</td><td>469 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−30%</span></td><td>2 775 ₽</td><td>438 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−67%</span></td><td class="hi">2 625 ₽</td><td class="hi">207 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tariff-name">Junior+</div>
+      <div class="tariff-desc">40 ГБ · 450 минут · 1000 SMS · Геолокация · Безлимитные мессенджеры · Защитник · Безопасный интернет</div>
+      <div class="price-row"><span class="price">750 ₽/мес</span><span class="tag-green">600 ₽ в Семейной группе с ролью «ребёнок»</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−25%</span></td><td>1 837 ₽</td><td>563 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−30%</span></td><td>3 300 ₽</td><td>525 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−67%</span></td><td class="hi">3 120 ₽</td><td class="hi">248 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h3>Для устройств и ноутбука</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="kicker">Для устройств (планшеты, роутеры и т.д.)</div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Абонемент</th><th>АП в мес.</th><th>Стоимость</th><th>В мес.</th><th>Комплект</th></tr>
+          <tr><td>12 мес. <span class="pill">−46%</span></td><td>250 ₽</td><td>1 600 ₽</td><td class="hi">133 ₽</td><td>1 760 ₽</td></tr>
+          <tr><td>36 мес. <span class="pill">−56%</span></td><td>250 ₽</td><td>3 960 ₽</td><td class="hi">110 ₽</td><td>4 120 ₽</td></tr>
+        </table>
+      </div>
+      <div class="note">+1 ГБ в подарок и скидка на АП при единовременной оплате за 12/36 мес.</div>
+    </div>
+    <div class="card">
+      <div class="kicker">Для ноутбука</div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Абонемент</th><th>АП в мес.</th><th>Стоимость</th><th>В мес.</th><th>Комплект</th></tr>
+          <tr><td>3 мес. (+100 ГБ/мес)</td><td>1 290 ₽</td><td>3 870 ₽</td><td>1 290 ₽</td><td>4 030 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−20%</span></td><td>1 290 ₽</td><td>6 192 ₽</td><td>1 032 ₽</td><td>6 350 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−30%</span></td><td>1 290 ₽</td><td>10 836 ₽</td><td class="hi">903 ₽</td><td>11 000 ₽</td></tr>
+        </table>
+      </div>
+      <div class="note">При оплате за 3 мес. — +100 ГБ/мес.</div>
+    </div>
+  </div>
+
+  <h3>МТС ТОП / ТОП+</h3>
+  <div class="card">
+    <div class="table-scroll">
+      <table>
+        <tr><th>Тариф</th><th>3 мес. (−15%)</th><th>6 мес. (−20%)</th><th>12 мес. (−30%)</th><th>24 мес. (−40%)</th></tr>
+        <tr><td>МТС ТОП</td><td>5 250 ₽</td><td>9 750 ₽</td><td>16 950 ₽</td><td class="hi">28 950 ₽</td></tr>
+        <tr><td>МТС ТОП+</td><td>10 350 ₽</td><td>19 350 ₽</td><td>33 750 ₽</td><td class="hi">57 750 ₽</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЗЕЛЁНЫЕ ЦЕННИКИ ============ -->
+<section id="green">
+  <h2 class="green-sec"><span class="ico">💸</span>Зелёные ценники — скидка с картой МТС Деньги</h2>
+  <p class="lead">Акция «Зелёные ценники» — гарантированная скидка на связь при оплате дебетовой картой МТС Деньги по тарифам <b>RED, РИИЛ и СУПЕР</b> (условия обновлены с 15 октября). Регионы действия — все регионы присутствия ПАО «МТС».</p>
+
+  <div class="grid c2">
+    <div class="card" style="border:2px solid var(--green)">
+      <div class="kicker" style="color:var(--green)">Для новых клиентов</div>
+      <div class="price-row"><span class="price" style="color:var(--green)">−20%</span><span>при оформлении новой SIM</span></div>
+      <p style="font-size:.87rem; line-height:1.5">Тарифы-участники: <b>RED, РИИЛ, СУПЕР</b>. Откройте виртуальную карту МТС Деньги, переведите на неё от 2 000 ₽ и оплачивайте тариф с этой карты — скидка применится к следующему списанию.</p>
+    </div>
+    <div class="card">
+      <div class="kicker">Действующие клиенты</div>
+      <div class="price-row"><span class="price">−10%</span><span>при переходе на акционный тариф</span></div>
+      <p style="font-size:.87rem; line-height:1.5">Перейдите на один из тарифов-участников и продолжайте пополнять баланс со своей карты МТС Деньги на сумму абонентской платы с учётом скидки.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Как получить и сохранить скидку</h3>
+    <div class="step"><span class="n">1</span><span>Оформите SIM-карту с тарифным планом — участником акции.</span></div>
+    <div class="step"><span class="n">2</span><span>Откройте свою карту МТС Деньги и пополните её на 2 000 ₽ или больше (несколько транзакций суммируются). Пополнение ЛС должно быть с карты, выпущенной в рамках акции — даже если у клиента уже есть активная ДК.</span></div>
+    <div class="step"><span class="n">3</span><span>Произведите оплату тарифа с этой карты за следующий расчётный период.</span></div>
+    <div class="step"><span class="n">4</span><span>Чтобы получать скидку каждый расчётный период — пополняйте счёт перед каждым списанием абонентской платы.</span></div>
+
+    <div class="alert">
+      <b>Пример:</b> тариф стоит 900 ₽, скидка 20% — перед списанием пополните счёт на 720 ₽ или больше. Скидка применяется на базовую стоимость тарифа и не распространяется на дополнительные услуги. Если за один раз положить сумму на несколько платежей — скидка применится только один раз.
+    </div>
+    <div class="note">Нельзя пополнять баланс с карт МТС Деньги, принадлежащих другим людям. Для клиентов, присоединившихся к акции до 15.10.2026, размер скидки остаётся без изменений. С 25.09.2026 новое подключение к акции недоступно для номеров в семейной группе; для существующих участников из семейной группы с 05.10.2026 продолжит действовать только семейная скидка.</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Что даёт дебетовая карта МТС Деньги</h3>
+    <div class="grid c3">
+      <ul class="feat">
+        <li>Выпуск карты — 0 ₽, обслуживание — 0 ₽</li>
+        <li>Кешбэк до 10 000 ₽/мес.</li>
+        <li>5 категорий кешбэка на выбор каждый месяц</li>
+      </ul>
+      <ul class="feat">
+        <li>Реверсивный кешбэк — обмен баллов в рубли</li>
+        <li>Кешбэк по QR</li>
+        <li>Скидка на связь при оплате картой («Зелёные ценники»)</li>
+      </ul>
+      <ul class="feat">
+        <li>Индивидуальная зарплатная карта: +0,5% к ставке по МТС Счёту</li>
+        <li>Снятие без комиссии до 2 млн ₽/мес.</li>
+        <li>Бесплатные уведомления</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ СЕМЕЙНАЯ ГРУППА ============ -->
+<section id="family">
+  <h2><span class="ico">👨‍👩‍👧</span>Семейная группа — скидка до 20%</h2>
+  <p class="lead">Семейная группа — способ сэкономить до 20% на тарифе каждого участника. <b>Не обязательно переводить всю семью на один тариф</b>: каждый сохраняет свой привычный тариф, получает скидку и доступ к функциям заботы о близких.</p>
+
+  <div class="card">
+    <h3 style="margin-top:0">Как считается скидка — чем больше участников, тем выше скидка</h3>
+    <div class="count-steps">
+      <div class="count-step"><div class="n">5%</div><div class="t">минимум участников</div></div>
+      <div class="count-step"><div class="n">10%</div><div class="t">больше близких</div></div>
+      <div class="count-step"><div class="n">15%</div><div class="t">ещё больше</div></div>
+      <div class="count-step best"><div class="n">20%</div><div class="t">максимальная скидка</div></div>
+    </div>
+    <div class="note">Скидка 20% действует на тарифе «Мудрый». Группу может собрать до 10 человек вместе с организатором. В группу можно добавить абонента другого оператора.</div>
+  </div>
+
+  <div class="grid c2">
+    <div class="card">
+      <h3 style="margin-top:0">Кто может вступить в группу</h3>
+      <p class="kicker">Мобильные тарифы</p>
+      <p style="font-size:.9rem; margin-bottom:10px">Супер, Junior, Junior+, РИИЛ, Мудрый, МТС RED, ТОП, ТОП+, Smart Гостевой, Smart Гостевой плюс, Люблю Татарстан</p>
+      <p class="kicker">Фиксированные тарифы</p>
+      <p style="font-size:.9rem">РИИЛ Плюс, Дома Отлично, Дома Выгодно, Дома для Своих, Дома по-новому, Дома Супер</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Тариф «Мудрый» — для старшего поколения</h3>
+      <div class="price-row"><span class="price" style="color:var(--green)">−20%</span><span>скидка в семейной группе</span></div>
+      <ul class="feat">
+        <li>15 ГБ, 500 минут, 500 SMS</li>
+        <li>Безлимит на мессенджеры</li>
+        <li>Безлимит на КИОН и Rutube</li>
+        <li>«Защитник» — защита от спама и мошенников</li>
+      </ul>
+      <div class="note">Отдельная роль и защита от мошенничества для старших близких — ключевое отличие МТС от конкурентов.</div>
+    </div>
+  </div>
+
+  <div class="grid c2">
+    <div class="card">
+      <h3 style="margin-top:0">Junior — функции заботы о ребёнке</h3>
+      <p style="font-size:.85rem; color:var(--muted); margin-bottom:6px">Наполнение и цены тарифа — в разделе «Абонементы». Здесь — то, что получает семья:</p>
+      <ul class="feat">
+        <li><b>Геолокация ребёнка</b> — участник группы видит местоположение с высокой точностью и уровень заряда смартфона</li>
+        <li><b>SOS-кнопка</b> — детский виджет с просьбой связаться и отправкой ГЕО родителю</li>
+        <li><b>«Всегда на связи»</b> — исходящая связь при отрицательном балансе 30 дней (20 мин и 20 SMS)</li>
+        <li><b>Чистый номер со скидкой</b></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Защитник+ — сервис безопасности на всю семью</h3>
+      <p style="font-size:.85rem; line-height:1.5">Одна услуга на всю семью: <b>до 3 взрослых и до 3 детей</b> через семейную группу. Включает блокировку спама, безопасный звонок, уведомления о мошенниках, проверку утечки данных, страховку от обмана до 1,5 млн ₽ и блокировку опасного контента у детей.</p>
+      <a class="link-more" href="#vt">Подробнее о Защитник+ и ценах →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Семейные группы у разных операторов</h3>
+    <div class="table-scroll">
+      <table class="wide">
+        <tr><th></th><th>МТС</th><th>МегаФон</th><th>билайн</th><th>T2</th></tr>
+        <tr><td>Основа продукта</td><td class="hi">Свои тарифы + роли, скидки и сервисы</td><td>Ресурсы организатора + безопасность</td><td>Один основной тариф + доп. номера</td><td>Свои тарифы + скидка</td></tr>
+        <tr><td>Скидка на тарифы</td><td class="hi">До 20%, отдельные скидки для ребёнка и старшего</td><td>Основная выгода через общий пакет</td><td>Экономия за счёт одного тарифа</td><td>До 25%</td></tr>
+        <tr><td>Ребёнок</td><td class="hi">Геолокация, заряд, Junior, защита, SOS</td><td>Геолокация, фильтрация, защита от списаний</td><td>Отдельный детский сценарий не ядро</td><td>Роль ребёнка и ограничения</td></tr>
+        <tr><td>Старшие близкие</td><td class="hi">Отдельная роль и защита от мошенников</td><td>Не главный сценарий</td><td>Не главный сценарий</td><td>Роль «Старшее поколение»</td></tr>
+        <tr><td>Другой оператор</td><td class="hi">Можно добавить в группу</td><td>Основная механика для номеров МегаФона</td><td>Нужен номер билайна</td><td>Можно добавить как Гостя</td></tr>
+        <tr><td>Размер группы</td><td class="hi">До 10 человек с организатором</td><td>Зависит от тарифа</td><td>До 10 доп. номеров</td><td>От 3 до 5 участников</td></tr>
+        <tr><td>Ключевая сила</td><td class="hi">Забота о ребёнке и старших + скидка</td><td>Ресурс и безопасность</td><td>Масштабный общий тариф</td><td>Простая скидочная модель</td></tr>
+        <tr><td>Ограничение</td><td>Нет общего пакета</td><td>Зависимость от тарифа организатора</td><td>Зависимость от основного номера</td><td>Мин. 3 участника + своевременный платёж</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ МНП ============ -->
+<section id="mnp">
+  <h2><span class="ico">🔀</span>МНП: переход на МТС и критерии фрода</h2>
+  <p class="lead"><b>МНП (Mobile Number Portability)</b> — переход абонента с другого оператора в МТС с сохранением своего номера. При переходе стоимость может быть зафиксирована. Однако заявки МНП проверяются системой антифрода — ниже условия, при которых продажа исключается из показателей и вознаграждений.</p>
+
+  <div class="two-col">
+    <div class="card frud-box">
+      <h3 style="margin-top:0">🚫 Что является фродом по МНП</h3>
+      <ul class="feat">
+        <li><b>Регистрации в один день на разных точках:</b> если сотрудник в рамках одного дня регистрировал SIM-карты на разных торговых точках, а разница между регистрациями менее 1 часа — такие регистрации исключаются из расчёта показателей «SIM Gross», «Продажи SIM первой половины месяца» и «SIM Gross выходные».</li>
+        <li><b>Работа на 4 и более точках:</b> сотрудники, работающие в одном отчётном периоде на 4-х и более торговых точках, исключаются из участия в подарочной акции «Прямая мотивация».</li>
+        <li><b>Владельцы салона франшизы:</b> сотрудники, являющиеся владельцами салона франшизы, исключаются из участия в акции «Прямая мотивация».</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">⚠️ Коды ошибок Numlex (исключаются из факта)</h3>
+      <p class="note" style="margin-top:0">Из факта TT и сотрудника исключаются заявки со следующими кодами ошибок в Numlex:</p>
+      <ul class="code-list">
+        <li><span class="code">7020</span><span>Несоответствие фамилии абонента</span></li>
+        <li><span class="code">7021</span><span>Несоответствие имени абонента</span></li>
+        <li><span class="code">7022</span><span>Несоответствие отчества</span></li>
+        <li><span class="code">7023</span><span>Несоответствие серии и номера документа удостоверяющего личность</span></li>
+        <li><span class="code">7030</span><span>Несоответствие всех сведений об абоненте</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">💰 Исключения при выплате вознаграждения</h3>
+    <p>При выплате вознаграждения за заявки исключаются заявки со статусом <b>«завершено неудачно»</b> по причинам:</p>
+    <ul class="feat">
+      <li>Абонент не зарегистрирован у оператора-донора</li>
+      <li>В составе сообщения, переданного оператором-реципиентом оператору-донору согласно пункту 135 ПОУТС, отсутствует копия заявления или иная предусмотренная данным пунктом информация</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ СРАВНЕНИЕ С КОНКУРЕНТАМИ ============ -->
+<section id="comp">
+  <h2><span class="ico">📊</span>Сравнение с конкурентами (октябрь 2026)</h2>
+  <p class="lead">Цены на основные предложения операторов. Звёздочка <span class="pill g">600* / 520* / 720*</span> — цена с картой МТС Деньги (скидка 20%).</p>
+
+  <div class="card">
+    <h3 style="margin-top:0">Линейка ~750 ₽/мес — RED против конкурентов</h3>
+    <div class="table-scroll">
+      <table class="wide">
+        <tr><th>Оператор</th><th>Тариф</th><th>Цена</th><th>Интернет</th><th>Минуты</th><th>SMS</th><th>Особенности</th></tr>
+        <tr><td><b>МТС</b></td><td>RED</td><td class="hi">750 ₽ (600* ₽)</td><td>50 ГБ</td><td>800 на всех</td><td>800</td><td>Звонки 0 ₽ на МТС после пакета, Защитник, МТС Секретарь, Секретарь в звонке</td></tr>
+        <tr><td>билайн</td><td>Мой онлайн+</td><td>850 ₽</td><td>50 ГБ</td><td>800 на другие</td><td>100</td><td>Безлимит на T2, перенос остатков, безлимитные мессенджеры/соцсети/видео</td></tr>
+        <tr><td>МегаФон</td><td>Максимум</td><td>750 ₽</td><td>50 ГБ</td><td>800 на другие</td><td>300</td><td>Безлимит на МегаФон, 5 мегасил на выбор</td></tr>
+        <tr><td>Т2 (Теле2)</td><td>bee HIT</td><td>700 ₽</td><td>50 ГБ</td><td>800 на другие</td><td>800</td><td>Безлимит на билайн, защита от спама, нейронка beeGPT PRO</td></tr>
+        <tr><td>Yota</td><td>Просто</td><td>450 ₽</td><td>безлимит</td><td>400</td><td>—</td><td>Безлимитные мессенджеры</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Линейка ~650 ₽/мес — РИИЛ против конкурентов</h3>
+    <div class="table-scroll">
+      <table class="wide">
+        <tr><th>Оператор</th><th>Тариф</th><th>Цена</th><th>Интернет</th><th>Минуты</th><th>SMS</th><th>Особенности</th></tr>
+        <tr><td><b>МТС</b></td><td>РИИЛ</td><td class="hi">650 ₽ (520* ₽)</td><td>50 ГБ</td><td>300</td><td>100</td><td>Перенос остатков, Защитник, МТС Секретарь, интеллектуальная запись</td></tr>
+        <tr><td>билайн</td><td>Везде онлайн</td><td>800 ₽</td><td>50 ГБ</td><td>100</td><td>100</td><td>Безлимитные мессенджеры/соцсети/видео, безлимит на T2</td></tr>
+        <tr><td>МегаФон</td><td>Минимум+</td><td>650 ₽</td><td>50 ГБ</td><td>400</td><td>30</td><td>Безлимит на МегаФон, 9 мегасил на выбор</td></tr>
+        <tr><td>Т2 (Теле2)</td><td>bee MULTI</td><td>600 ₽</td><td>30 ГБ</td><td>400</td><td>400</td><td>Безлимит на билайн, нейронка beeGPT</td></tr>
+        <tr><td>Yota</td><td>Собери свой тариф</td><td>470 ₽</td><td>50 ГБ</td><td>500</td><td>—</td><td>Безлимитные мессенджеры</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Линейка ~900 ₽/мес — СУПЕР против конкурентов</h3>
+    <div class="table-scroll">
+      <table class="wide">
+        <tr><th>Оператор</th><th>Тариф</th><th>Цена</th><th>Интернет</th><th>Минуты</th><th>SMS</th><th>Особенности</th></tr>
+        <tr><td><b>МТС</b></td><td>СУПЕР</td><td class="hi">900 ₽ (720* ₽)</td><td>безлимит</td><td>1500</td><td>1000</td><td>Защитник, МТС Секретарь, интеллектуальная запись, безлимит минут в сети МТС</td></tr>
+        <tr><td>билайн</td><td>BLACK</td><td>1 000 ₽</td><td>безлимит</td><td>1500</td><td>100</td><td>Безлимит на T2, звонки в СНГ, роуминг, выделенная линия, перенос остатков</td></tr>
+        <tr><td>МегаФон</td><td>Максимум+</td><td>900 ₽</td><td>безлимит</td><td>1500</td><td>30</td><td>Безлимит на МегаФон и мессенджеры, 5 мегасил на выбор</td></tr>
+        <tr><td>Т2 (Теле2)</td><td>bee PRO</td><td>900 ₽</td><td>100 ГБ</td><td>1500</td><td>1500</td><td>Безлимит на билайн, нейронка beeGPT</td></tr>
+        <tr><td>Yota</td><td>Собери свой тариф</td><td>750 ₽</td><td>100 ГБ</td><td>2000</td><td>—</td><td>Безлимитные мессенджеры</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Бюджетный сегмент ~550 ₽/мес</h3>
+    <div class="table-scroll">
+      <table class="wide">
+        <tr><th>Оператор</th><th>Тариф</th><th>Цена</th><th>Интернет</th><th>Минуты</th><th>SMS</th><th>Особенности</th></tr>
+        <tr><td><b>МТС</b></td><td>ПРОЩЕ</td><td>550 ₽</td><td>10 ГБ</td><td>200</td><td>200</td><td>Простой тариф с минимальным наполнением</td></tr>
+        <tr><td>билайн</td><td>Мой разговор</td><td>650 ₽</td><td>10 ГБ</td><td>200</td><td>100</td><td>Безлимит на T2, 9 мегасил на выбор</td></tr>
+        <tr><td>МегаФон</td><td>Минимум</td><td>550 ₽</td><td>10 ГБ</td><td>200</td><td>30</td><td>Безлимит на МегаФон</td></tr>
+        <tr><td>Т2 (Теле2)</td><td>bee SUPER START</td><td>550 ₽</td><td>10 ГБ</td><td>200</td><td>200</td><td>Безлимитные мессенджеры, безлимит на билайн</td></tr>
+        <tr><td>Yota</td><td>Попробуй Максимум</td><td>367 ₽ *</td><td>безлимит</td><td>800</td><td>—</td><td>*АП при покупке абонемента на 3 мес за 1 000 ₽; с 4 мес — переход на тариф с настройкой</td></tr>
+      </table>
+    </div>
+    <div class="note">Условия конкурентов приведены по презентации «Челябинск_Сравнение с конкурентами_ОКТЯБРЬ». Уточняйте актуальные цены на официальных сайтах операторов.</div>
+  </div>
+</section>
+
+<!-- ============ VOICETECH ============ -->
+<section id="vt">
+  <h2><span class="ico">🎙</span>Сервисы безопасности и VoiceTech</h2>
+  <p class="lead">Продукты безопасности и технологии МТС: блокировка спама, проверка утечки данных, защита от мошенников, страховка от обмана и удобство звонков.</p>
+
+  <div class="grid c2">
+    <div class="card" style="border:2px solid var(--mts)">
+      <div class="tariff-name">Защитник+</div>
+      <div class="svc-price">
+        <span class="price">249 ₽/мес</span>
+        <span class="note" style="margin:0">актуальные тарифы · 299 ₽/мес архивные</span>
+      </div>
+      <div class="tariff-desc">Подписка на все сервисы безопасности МТС. В одну услугу можно добавить <b>до 3 взрослых и до 3 детей</b> через семейную группу — платит один человек.</div>
+      <ul class="feat">
+        <li><b>Блокировка спама</b> — «Защитник» заблокирует спам и сохранит информацию о звонке в «Мой МТС»</li>
+        <li><b>Безопасный звонок</b> — распознаёт, что дозвонился мошенник, во время разговора. Предупредит о рисках и не даст обмануть</li>
+        <li><b>Уведомления о мошенниках</b> — моментально пришлёт уведомление, если близкий говорит с мошенником</li>
+        <li><b>Проверка утечки данных</b> — найдёт данные клиента, если они утекли в сеть, и даст рекомендации, что делать</li>
+        <li><b>Страховка от обмана</b> — вернёт деньги, если клиента обманули и он перевёл средства мошенникам. Компенсация ущерба <b>до 1,5 млн ₽</b></li>
+        <li><b>Безопасный интернет</b> — заблокирует взрослый и нежелательный контент у детей</li>
+      </ul>
+      <div class="svc-note">Продаём как основной сервис безопасности для всей семьи. Особенно хорошо заходит родителям и владельцам «Мудрого».</div>
+    </div>
+
+    <div class="card" style="border:2px solid var(--mts)">
+      <div class="tariff-name">AI Помощник МТС</div>
+      <div class="svc-price">
+        <span class="price">249 ₽/мес</span>
+        <span class="svc-old">347 ₽ по отдельности</span>
+      </div>
+      <div class="tariff-desc">Подписка на все сервисы для тех, кто много звонит: убирает шумы, автоматически сохраняет и обрабатывает важную информацию.</div>
+      <ul class="feat">
+        <li><b>Шумоподавление</b> (отдельно 99 ₽/мес) — убирает фоновые шумы, слышен только голос собеседника, даже шёпот в шумном автобусе</li>
+        <li><b>Интеллектуальная запись</b> (отдельно 99 ₽/мес) — звонки записываются автоматически без оповещений, расшифровки и краткое содержание в «Мой МТС»</li>
+        <li><b>Секретарь</b> (отдельно 149 ₽/мес) — отвечает, когда нет сети или телефон выключен, присылает расшифровки. «Звонок в чат»: слова звонящего превращаются в текст, ваши сообщения озвучиваются голосом</li>
+        <li><b>Ассистент в звонке</b> — позвоните на 0355 и дайте голосовое задание: «Марвин, до скольких работает поликлиника №1?»</li>
+      </ul>
+      <div class="svc-note">Выгода клиента: 99 + 99 + 149 = 347 ₽, а с подпиской — 249 ₽. Продаём как «всё в одном для активных звонков».</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Сервисы по отдельности — для сравнения при продаже</h3>
+    <div class="table-scroll">
+      <table>
+        <tr><th>Сервис</th><th>Цена</th><th>Бесплатно в тарифах</th><th>Что делает</th></tr>
+        <tr><td>Шумоподавление</td><td>99 ₽/мес</td><td>Супер (нужно подключить для активации)</td><td>Чистый звук без фоновых шумов</td></tr>
+        <tr><td>Интеллектуальная запись</td><td>99 ₽/мес</td><td>—</td><td>Авто-запись всех звонков с расшифровками</td></tr>
+        <tr><td>Секретарь</td><td>149 ₽/мес</td><td>Супер, РИИЛ, RED</td><td>Ответ на звонок без сети, расшифровка, звонок в чат</td></tr>
+        <tr><td class="hi">AI Помощник МТС (подписка)</td><td class="hi">249 ₽/мес</td><td class="hi">—</td><td class="hi">Все три сервиса + Ассистент в звонке (0355)</td></tr>
+        <tr><td class="hi">Защитник+ (подписка)</td><td class="hi">249 ₽/мес*</td><td class="hi">Базовый «Защитник» в RED/РИИЛ/Супер/Junior</td><td class="hi">6 сервисов безопасности для семьи, страховка до 1,5 млн ₽</td></tr>
+      </table>
+    </div>
+    <div class="note">*249 ₽/мес для актуальных тарифов, 299 ₽/мес для архивных.</div>
+  </div>
+</section>
+
+<!-- ============ КУБАРИК ============ -->
+<section id="kubarik">
+  <h2><span class="ico">🏠</span>Кубарик — тарифы Челябинской области</h2>
+  <p class="lead">Флаер «Кубарик»: Челябинская область / г. Челябинск, Магнитогорск, Миасс, Западный, Шигаево. Актуально на 07.09.2026. Подробнее на mts.ru.</p>
+
+  <div class="grid c3">
+    <div class="mt-card">
+      <h4>RED</h4>
+      <div class="p">650 ₽/мес</div>
+      <ul class="feat">
+        <li>800 минут на всех операторов</li>
+        <li>800 SMS</li>
+        <li>КИОН и КИОН Музыка</li>
+        <li>Секретарь</li>
+      </ul>
+      <div class="note"><b>С абонементом:</b> 3 мес — 1 658 ₽ · 6 мес — 2 340 ₽ · 12 мес — 3 900 ₽ · 24 мес — 6 240 ₽</div>
+    </div>
+    <div class="mt-card">
+      <h4>СУПЕР</h4>
+      <div class="p">700 ₽/мес</div>
+      <ul class="feat">
+        <li>1 200 минут на всех операторов</li>
+        <li>800 SMS</li>
+        <li>КИОН и КИОН Музыка</li>
+        <li>Секретарь</li>
+      </ul>
+      <div class="note"><b>С абонементом:</b> 3 мес — 1 785 ₽ · 6 мес — 2 520 ₽ · 12 мес — 4 200 ₽ · 24 мес — 6 720 ₽</div>
+    </div>
+    <div class="mt-card">
+      <h4>Junior</h4>
+      <div class="p">313 ₽/мес*</div>
+      <ul class="feat">
+        <li>20 ГБ, 300 минут, 1 000 SMS</li>
+        <li>Безлимит мессенджеры и Rutube</li>
+        <li>Безопасный интернет</li>
+        <li>SOS-кнопка и ГЕО ребёнка</li>
+        <li>Чистый номер — 150 ₽</li>
+      </ul>
+      <div class="note">*Со скидкой в 1-й месяц. Сохраните скидку и получите больше преимуществ в Семейной группе.</div>
+    </div>
+  </div>
+
+  <div class="grid c2">
+    <div class="mt-card">
+      <h4>Твоя цена (собери свой тариф)</h4>
+      <div class="p">от 490 ₽/мес</div>
+      <ul class="feat">
+        <li>Выбери параметры и получи скидку: 3 мес — 15%, 6 мес — 40%, 12 мес — 50%, 24 мес — 60%</li>
+        <li>От 5 ГБ / 200 минут / 100 SMS до безлимита ГБ и 2 000 минут</li>
+        <li>Нейросети, ассистент в звонке</li>
+        <li>КИОН и КИОН Музыка, защита от спама и мошенников</li>
+      </ul>
+    </div>
+    <div class="mt-card">
+      <h4>ПРОЩЕ</h4>
+      <div class="p">550 ₽/мес</div>
+      <ul class="feat">
+        <li>10 ГБ, 400 минут и 400 SMS на всех операторов</li>
+        <li>КИОН и КИОН Музыка</li>
+        <li>Защитник</li>
+        <li>Прогрессоры: прокоины за игры и квесты, обмен на скидку</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="border:2px solid var(--green)">
+    <div class="kicker" style="color:var(--green)">Тарифы для дома</div>
+    <div class="grid c2" style="margin-top:8px">
+      <div>
+        <h4>ДОМА ВЫГОДНО — 490 ₽/мес</h4>
+        <ul class="feat">
+          <li>Домашний интернет 500 Мбит/с (можно увеличить до 1 Гбит/с)</li>
+          <li>Безлимитный мобильный интернет</li>
+          <li>600 минут на МТС и другие номера по России</li>
+          <li>Домашнее ТВ, группа для близких, КИОН и КИОН Музыка</li>
+        </ul>
+      </div>
+      <div>
+        <h4>ДОМА СУПЕР — 475 ₽/мес (1–6 мес.), далее 950 ₽/мес</h4>
+        <ul class="feat">
+          <li>Домашний интернет 200 Мбит/с (можно увеличить до 1 Гбит/с)</li>
+          <li>Безлимитный мобильный интернет и безлимитные звонки на МТС</li>
+          <li>2 000 минут на другие номера по России</li>
+          <li>Домашнее ТВ, 0 ₽/мес за пять участников Группы для близких, Защитник, КИОН</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Лучшие сервисы МТС в тарифе: 3 месяца 0 ₽ — попробуйте и оставьте любимые после бесплатного периода. Узнайте о супервыгоде с картой МТС Деньги у продавца. Зафиксируем стоимость при переходе со своим номером.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:#fff">МТС — скидки и продукты</b> · внутренняя справочная страница</div>
+    <div>Данные собраны из презентаций (папка «Преза»): Шпаргалка VT / Семейная / ЗЦ, Абонемент (акт. 20.10.2026), Дебетовая карта МТС Деньги, Критерии фрода МНП, Сравнение с конкурентами (октябрь 2026), Продукты VoiceTech, Кубарик (акт. 07.09.2026).</div>
+    <div>Цены и условия могут меняться — уточняйте актуальность перед продажей.</div>
+  </div>
+</footer>
+
+</body>
+</html>
