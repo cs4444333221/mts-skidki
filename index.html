@@ -53,6 +53,7 @@ th,td{border:1px solid var(--border); padding:7px 8px; text-align:center; vertic
 th{background:#fafafa; font-weight:700; font-size:.78rem}
 td:first-child,th:first-child{text-align:left}
 tr:nth-child(even) td{background:#fcfcfd}
+td s,th s{color:#9ca3af}
 .hi{background:#fef9c3 !important; font-weight:700}
 .mts-row td{background:#fff5f5 !important; font-weight:600}
 table.wide{min-width:680px}
@@ -122,7 +123,7 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
     <a href="#abon">🎫 Абонементы</a>
     <a href="#green">💸 Зелёные ценники</a>
     <a href="#family">👨‍👩‍👧 Семейная группа</a>
-    <a href="#vt">🎙 Сервисы 249 ₽</a>
+    <a href="#vt">🎙 VoiceTech</a>
     <a href="#mnp">🔀 МНП и фрод</a>
     <a href="#comp">📊 Конкуренты</a>
     <a href="#kubarik">🏠 Кубарик</a>
@@ -142,9 +143,9 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
       <div class="q-tag green-tag">−20% зелёный ценник</div>
     </a>
     <a class="quick-card" href="#abon">
-      <div class="q-label">Тариф РИИЛ</div>
-      <div class="q-price">650 ₽</div>
-      <div class="q-sub">520 ₽ с картой МТС Деньги</div>
+      <div class="q-label">Тариф РИИЛ (настраиваемый)</div>
+      <div class="q-price">580–950 ₽</div>
+      <div class="q-sub">3 настройки · с картой МТС Деньги от 464 ₽</div>
       <div class="q-tag green-tag">−20% зелёный ценник</div>
     </a>
     <a class="quick-card" href="#abon">
@@ -156,7 +157,7 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
     <a class="quick-card" href="#abon">
       <div class="q-label">Абонемент 24 мес.</div>
       <div class="q-price">−30%</div>
-      <div class="q-sub">RED 525 ₽/мес · РИИЛ 455 ₽/мес · Супер 630 ₽/мес</div>
+      <div class="q-sub">RED 525 ₽/мес · РИИЛ от 406 ₽/мес · Супер 630 ₽/мес</div>
     </a>
     <a class="quick-card" href="#family">
       <div class="q-label">Семейная группа</div>
@@ -199,7 +200,59 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
   <h2><span class="ico">🎫</span>Абонементы</h2>
   <p class="lead">Абонемент — предоплата абонентской платы на срок. Клиент фиксирует цену на весь срок и получает скидку до 30% (до 67% на детских тарифах). Пока действует абонемент — не нужно помнить про пополнение баланса, стоимость АП не меняется. При покупке абонемента списывается его стоимость + плата за подключение 150 ₽. Актуально на 20.10.2026.</p>
 
+  <h3 style="margin-top:0">РИИЛ — настраиваемый тариф: 3 настройки</h3>
+  <p class="lead" style="margin-bottom:14px">Клиент сам собирает РИИЛ (200–2000 мин., 5 ГБ — безлимит). Ниже — три типовые настройки: цена без абонемента, зелёный ценник МТС Деньги и стоимость абонементов на каждый срок. Скидки абонемента: 3 мес −10%, 6 мес −15%, 12 мес −20%, 24 мес −30%.</p>
+
   <div class="grid c3">
+    <div class="card">
+      <div class="tariff-name">РИИЛ · 30 ГБ · 2000 мин</div>
+      <div class="tariff-desc">100 SMS · максимальная настройка</div>
+      <div class="price-row"><span class="price">950 ₽/мес</span><span class="tag-green">760 ₽ с картой МТС Деньги</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−10%</span></td><td><s>2 850 ₽</s> 2 565 ₽</td><td>855 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−15%</span></td><td><s>5 700 ₽</s> 4 845 ₽</td><td>808 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−20%</span></td><td><s>11 400 ₽</s> 9 120 ₽</td><td>760 ₽</td></tr>
+          <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi"><s>22 800 ₽</s> 15 960 ₽</td><td class="hi">665 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tariff-name">РИИЛ · 50 ГБ · 300 мин</div>
+      <div class="tariff-desc">100 SMS · популярная настройка</div>
+      <div class="price-row"><span class="price">650 ₽/мес</span><span class="tag-green">520 ₽ с картой МТС Деньги</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−10%</span></td><td><s>1 950 ₽</s> 1 755 ₽</td><td>585 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−15%</span></td><td><s>3 900 ₽</s> 3 315 ₽</td><td>552 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−20%</span></td><td><s>7 800 ₽</s> 6 240 ₽</td><td>520 ₽</td></tr>
+          <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi"><s>15 600 ₽</s> 10 920 ₽</td><td class="hi">455 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tariff-name">РИИЛ · 25 ГБ · 200 мин</div>
+      <div class="tariff-desc">100 SMS · экономная настройка</div>
+      <div class="price-row"><span class="price">580 ₽/мес</span><span class="tag-green">464 ₽ с картой МТС Деньги</span></div>
+      <div class="table-scroll">
+        <table>
+          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
+          <tr><td>3 мес. <span class="pill">−10%</span></td><td><s>1 740 ₽</s> 1 566 ₽</td><td>522 ₽</td></tr>
+          <tr><td>6 мес. <span class="pill">−15%</span></td><td><s>3 480 ₽</s> 2 958 ₽</td><td>493 ₽</td></tr>
+          <tr><td>12 мес. <span class="pill">−20%</span></td><td><s>6 960 ₽</s> 5 568 ₽</td><td>464 ₽</td></tr>
+          <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi"><s>13 920 ₽</s> 9 744 ₽</td><td class="hi">406 ₽</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="note">Стоимость абонемента указана без платы за подключение 150 ₽. Цена абонемента фиксируется на весь срок.</div>
+
+  <h3>RED и МТС СУПЕР</h3>
+  <div class="grid c2">
     <div class="card">
       <div class="tariff-name">RED</div>
       <div class="tariff-desc">50 ГБ · 800 минут · 800 SMS. Защитник, МТС Секретарь, KION и KION Музыка</div>
@@ -211,21 +264,6 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
           <tr><td>6 мес. <span class="pill">−15%</span></td><td>3 975 ₽</td><td>637 ₽</td></tr>
           <tr><td>12 мес. <span class="pill">−20%</span></td><td>7 350 ₽</td><td>600 ₽</td></tr>
           <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi">12 750 ₽</td><td class="hi">525 ₽</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="tariff-name">РИИЛ</div>
-      <div class="tariff-desc">Собери свой тариф: 200–2000 мин., 5 ГБ — безлимит. Цена для 50 ГБ / 300 мин / 100 SMS</div>
-      <div class="price-row"><span class="price">650 ₽/мес</span><span class="tag-green">520 ₽ с картой МТС Деньги</span></div>
-      <div class="table-scroll">
-        <table>
-          <tr><th>Срок</th><th>Стоимость</th><th>В мес.</th></tr>
-          <tr><td>3 мес. <span class="pill">−10%</span></td><td>1 905 ₽</td><td>585 ₽</td></tr>
-          <tr><td>6 мес. <span class="pill">−15%</span></td><td>3 465 ₽</td><td>552 ₽</td></tr>
-          <tr><td>12 мес. <span class="pill">−20%</span></td><td>6 390 ₽</td><td>520 ₽</td></tr>
-          <tr><td>24 мес. <span class="pill">−30%</span></td><td class="hi">11 070 ₽</td><td class="hi">455 ₽</td></tr>
         </table>
       </div>
     </div>
@@ -544,7 +582,7 @@ footer .wrap{display:flex; flex-direction:column; gap:8px}
 
 <!-- ============ VOICETECH ============ -->
 <section id="vt">
-  <h2><span class="ico">🎙</span>Сервисы безопасности и VoiceTech</h2>
+  <h2><span class="ico">🎙</span>VoiceTech</h2>
   <p class="lead">Продукты безопасности и технологии МТС: блокировка спама, проверка утечки данных, защита от мошенников, страховка от обмана и удобство звонков.</p>
 
   <div class="grid c2">
